@@ -1,0 +1,33 @@
+{
+  "name": "snippets",
+  "authors": [
+    "hudamin <hdm258i@gmail.com>"
+  ],
+  "description": "snippets",
+  "main": "",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "snippets"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/MichaelHu/snippets",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "452a377e03",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "452a377e03c83a229d7e8656d46596bb0413a569"
+  },
+  "_source": "https://github.com/MichaelHu/snippets.git",
+  "_target": "*",
+  "_originalSource": "irice-snippets",
+  "_direct": true
+}
