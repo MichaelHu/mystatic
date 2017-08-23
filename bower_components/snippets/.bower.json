@@ -1,0 +1,34 @@
+{
+  "name": "snippets",
+  "version": "0.3.1",
+  "authors": [
+    "hudamin <hdm258i@gmail.com>"
+  ],
+  "description": "snippets",
+  "main": "",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "snippets"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/MichaelHu/snippets",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "0.3.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.3.1",
+    "commit": "490b4c8d4f1c57a2d0b93713dde92f54fcdadf59"
+  },
+  "_source": "https://github.com/MichaelHu/snippets.git",
+  "_target": "^0.3.1",
+  "_originalSource": "https://github.com/MichaelHu/snippets.git",
+  "_direct": true
+}
