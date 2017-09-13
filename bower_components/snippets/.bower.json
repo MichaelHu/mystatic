@@ -1,6 +1,6 @@
 {
   "name": "snippets",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "authors": [
     "hudamin <hdm258i@gmail.com>"
   ],
@@ -21,11 +21,11 @@
     "test",
     "tests"
   ],
-  "_release": "0.3.5",
+  "_release": "0.3.6",
   "_resolution": {
     "type": "version",
-    "tag": "0.3.5",
-    "commit": "d835a533e9c563e234868a9ce37057c6e062c373"
+    "tag": "0.3.6",
+    "commit": "9c96d01b6d8859304c00a5e3bc2c25e3f038c8bc"
   },
   "_source": "https://github.com/MichaelHu/snippets.git",
   "_target": "^0.3.1",
