@@ -1,6 +1,6 @@
 {
   "name": "dom-text-search",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "A text search tool in dom environment, also support searching with regular expression or selector.",
   "main": "index.js",
   "scripts": {

@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { regRegExpPrefix, regSelectorPrefix, highlightExcludes, hideExcludes } from '../config';
+import { regRegExpPrefix, regSelectorPrefix } from '../config';
 import { merge as mergeOptions } from '../config/options';
 import { doContentSearch, doSelectorSearch, restore } from './search-core';
 import { setState, getState } from './search-state';
@@ -176,40 +176,44 @@ function onDocumentKeyDown( e ) {
 
     if ( /input|textarea/i.test( tagName ) ) {
         // Slash-key state transformation
-        lastKeyIsSlash = false;
+        // lastKeyIsSlash = false;
         return;
     }
 
     if ( keyCode == SLASH ) {
         if ( e.shiftKey ) {
-             // console.log( ' = do selector search' );
-             prepareToSearch( { type: SEARCH_TYPE_SELECTOR } ); 
-        }
-        else if ( ! lastKeyIsSlash ) {
-            // Slash-key state transformation
-            lastKeyIsSlash = true;
-
-            timerForSlash = setTimeout( function() {
-                // console.log( ' = do content search' );
-
-                // Slash-key state transformation
-                lastKeyIsSlash = false;
-
-                prepareToSearch( { type: SEARCH_TYPE_TEXT } );
-            }, 300 );
-
-            // update state and leave
-            return;
-        }
-        else {
-            clearTimeout( timerForSlash );
-            // console.log( ' = do regexp content search' );
+            // console.log( ' = do selector search' );
             prepareToSearch( { type: SEARCH_TYPE_REGEXP } ); 
+        }
+        else if ( e.ctrlKey ) {
+            prepareToSearch( { type: SEARCH_TYPE_SELECTOR } ); 
+        }
+        // else if ( ! lastKeyIsSlash ) {
+        //     // Slash-key state transformation
+        //     lastKeyIsSlash = true;
+
+        //     timerForSlash = setTimeout( function() {
+        //         // console.log( ' = do content search' );
+
+        //         // Slash-key state transformation
+        //         lastKeyIsSlash = false;
+
+        //         prepareToSearch( { type: SEARCH_TYPE_TEXT } );
+        //     }, 300 );
+
+        //     // update state and leave
+        //     return;
+        // }
+        else {
+            // clearTimeout( timerForSlash );
+            // console.log( ' = do regexp content search' );
+            // prepareToSearch( { type: SEARCH_TYPE_REGEXP } ); 
+            prepareToSearch( { type: SEARCH_TYPE_TEXT } );
         }
     }
 
     // Slash-key state transformation
-    lastKeyIsSlash = false;
+    // lastKeyIsSlash = false;
 
     // search results navigation
     if ( keyCode == N_KEY

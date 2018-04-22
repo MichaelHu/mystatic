@@ -35,28 +35,30 @@ function doSelectorSearch( selector, options ) {
     $results.addClass( searchElementHighlightStyle );
 
     // hide
-    preDepthTravel( $root[ 0 ], {
-        visit: function( node ) {
-            if ( matchSelectors( node, opt.hideExcludes ) 
-                // #text nodes ignored
-                || node.nodeType == 3 ) {
-                return STOP_TRAVEL;
-            }
+    if ( opt.hideNoMatchedItems ) {
+        preDepthTravel( $root[ 0 ], {
+            visit: function( node ) {
+                if ( matchSelectors( node, opt.hideExcludes ) 
+                    // #text nodes ignored
+                    || node.nodeType == 3 ) {
+                    return STOP_TRAVEL;
+                }
 
-            var $node = $( node );
-            var className = searchElementHighlightStyle;
-            if ( ! $node.find( '.' + className ).length 
-                && ! $node.hasClass( className )
-                ) {
-                $node.addClass( searchHideStyle );
-                return STOP_TRAVEL;
+                var $node = $( node );
+                var className = searchElementHighlightStyle;
+                if ( ! $node.find( '.' + className ).length 
+                    && ! $node.hasClass( className )
+                    ) {
+                    $node.addClass( searchHideStyle );
+                    return STOP_TRAVEL;
+                }
+                else if ( $node.hasClass( className ) ) {
+                    return STOP_TRAVEL;
+                }
+                return 0;
             }
-            else if ( $node.hasClass( className ) ) {
-                return STOP_TRAVEL;
-            }
-            return 0;
-        }
-    } );
+        } );
+    }
     
     return true;
 }
@@ -114,37 +116,40 @@ function doContentSearch( text, options ) {
         return false;
     }
 
-    preDepthTravel( $root[ 0 ], {
-        visit: function( node ) {
-            if ( matchSelectors( node, opt.hideExcludes ) 
-                // #text nodes ignored
-                || node.nodeType == 3 ) {
-                return STOP_TRAVEL;
-            }
+    // hide
+    if ( opt.hideNoMatchedItems ) {
+        preDepthTravel( $root[ 0 ], {
+            visit: function( node ) {
+                if ( matchSelectors( node, opt.hideExcludes ) 
+                    // #text nodes ignored
+                    || node.nodeType == 3 ) {
+                    return STOP_TRAVEL;
+                }
 
-            var $node = $( node );
-            var className = searchHighlightStyle;
-            if ( ! $node.find( '.' + className ).length 
-                && ! $node.hasClass( className )
-                ) {
-                // console.log( node.tagName + ', ' + node.nodeName );
-                var display = $node.css( 'display' );
-
-                if ( ! allTextChildren( node ) 
-                    || display != 'inline' 
-                        && display != 'inline-block'
+                var $node = $( node );
+                var className = searchHighlightStyle;
+                if ( ! $node.find( '.' + className ).length 
+                    && ! $node.hasClass( className )
                     ) {
-                    $node.addClass( searchHideStyle );
+                    // console.log( node.tagName + ', ' + node.nodeName );
+                    var display = $node.css( 'display' );
+
+                    if ( ! allTextChildren( node ) 
+                        || display != 'inline' 
+                            && display != 'inline-block'
+                        ) {
+                        $node.addClass( searchHideStyle );
+                    }
+                    // do not hide inline elements those have only text child nodes
+                    else {
+                        // console.log( 'allTextChildren: ' + node.nodeType );
+                    }
+                    return STOP_TRAVEL;
                 }
-                // do not hide inline elements those have only text child nodes
-                else {
-                    // console.log( 'allTextChildren: ' + node.nodeType );
-                }
-                return STOP_TRAVEL;
+                return 0;
             }
-            return 0;
-        }
-    } );
+        } );
+    }
 
     return true;
 }
