@@ -1,5 +1,5 @@
-# npmcdn.com
+# unpkg.com
 
-<https://npmcdn.com/redux/>
+<https://unpkg.com/redux/>
 
 
